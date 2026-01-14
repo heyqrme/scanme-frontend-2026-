@@ -1,0 +1,22 @@
+{
+  "name": "ScanMe",
+  "short_name": "ScanMe",
+  "description": "Connect with friends via unique QR codes in this social community for young adults.",
+  "start_url": "/scan-me",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#6d28d9",
+  "theme_color": "#6d28d9",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

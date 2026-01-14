@@ -1,0 +1,14 @@
+diff --git a/src/schema-routes/schema-routes.js b/src/schema-routes/schema-routes.js
+index 365f2328f417b76b3541cf17f555a80c2c63422c..61634144b94596aad46b750aca54b0f2f6f4ff46 100644
+--- a/src/schema-routes/schema-routes.js
++++ b/src/schema-routes/schema-routes.js
+@@ -661,8 +661,7 @@ class SchemaRoutes {
+     extractRequestParams,
+     routeName,
+   }) => {
+-    if (!queryParams || !queryParams.length) return null;
+-
++		if ((!queryParams || !queryParams.length) && pathArgsSchemas.length === 0) return null;
+     const pathParams = _.reduce(
+       pathArgsSchemas,
+       (acc, pathArgSchema) => {

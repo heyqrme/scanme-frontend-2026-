@@ -1,0 +1,6 @@
+[
+  {
+    "path": "/",
+    "component": "./pages/App"
+  }
+]

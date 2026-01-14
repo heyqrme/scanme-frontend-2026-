@@ -1,0 +1,240 @@
+POST http://localhost:5173/api/new-openapi-spec
+Content-Type: application/json
+
+{
+  "timestamp": "2023-11-20T13:19:28.720339",
+  "content": {
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Databutton generated API",
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "/_projects/c9d9f7d3-9d9d-4f9d-9d9d-9d9d9d9d9d9d/dbtn/devx/app"
+      }
+    ],
+    "paths": {
+      "/_healthz": {
+        "get": {
+          "summary": "Handle Healthz",
+          "operationId": "handle_healthz",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/routes/example/{kind}": {
+        "get": {
+          "summary": "Example",
+          "operationId": "example",
+          "parameters": [
+            {
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Kind"
+              },
+              "name": "kind",
+              "in": "path"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleInput"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ExampleOutput"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create Example",
+          "operationId": "create_example",
+          "parameters": [
+            {
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Kind"
+              },
+              "name": "kind",
+              "in": "path"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleInput"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ExampleOutput"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/routes/hello": {
+        "get": {
+          "summary": "Hello",
+          "operationId": "hello",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "/routes/crash": {
+        "get": {
+          "summary": "Crash Now",
+          "operationId": "crash_now",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "ExampleInput": {
+          "properties": {
+            "x": {
+              "type": "integer",
+              "title": "X"
+            },
+            "y": {
+              "type": "string",
+              "title": "Y"
+            },
+            "z": {
+              "type": "number",
+              "title": "Z"
+            }
+          },
+          "type": "object",
+          "required": ["x", "y", "z"],
+          "title": "ExampleInput"
+        },
+        "ExampleOutput": {
+          "properties": {
+            "msg": {
+              "type": "string",
+              "title": "Msg"
+            }
+          },
+          "type": "object",
+          "required": ["msg"],
+          "title": "ExampleOutput"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": ["loc", "msg", "type"],
+          "title": "ValidationError"
+        }
+      }
+    }
+  }
+}

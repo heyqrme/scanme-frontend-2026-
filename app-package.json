@@ -1,0 +1,32 @@
+{
+  "version": null,
+  "app": {
+    "dependencies": {
+      "@types/html2canvas": "*",
+      "@stripe/stripe-js": "*",
+      "@types/react-dom@latest": "*",
+      "@types/file-saver": "*",
+      "@types/three": "*",
+      "@types/qrcode": "*",
+      "three": "*",
+      "html2canvas": "*",
+      "@stripe/react-stripe-js": "*",
+      "@types/react@latest": "*",
+      "file-saver": "*",
+      "@types/react@19.2.1": "*",
+      "react-force-graph": "*",
+      "react-dom@19.2.1": "*",
+      "qrcode": "*",
+      "react-player": "*",
+      "react@19.2.1": "*",
+      "@types/react-dom@19.2.1": "*",
+      "qrcode.react": "*",
+      "jszip": "*",
+      "@types/qrcode.react": "*",
+      "react-icons": "*",
+      "react-zxing": "*"
+    },
+    "devDependencies": {}
+  },
+  "base": null
+}

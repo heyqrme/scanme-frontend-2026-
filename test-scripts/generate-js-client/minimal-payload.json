@@ -1,0 +1,36 @@
+{
+  "timestamp": "2023-11-20T13:19:28.720339",
+  "content": {
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Databutton generated API",
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "/_projects/DATABUTTON_PROJECT_ID/dbtn/devx/app"
+      }
+    ],
+    "paths": {
+      "/_healthz": {
+        "get": {
+          "summary": "Handle Healthz",
+          "operationId": "handle_healthz",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {}
+    }
+  }
+}

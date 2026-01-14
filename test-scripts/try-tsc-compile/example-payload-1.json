@@ -1,0 +1,4 @@
+{
+  "filename": "Hello.tsx",
+  "code": "export type Props = {};\nexport const Hello = () => {};"
+}

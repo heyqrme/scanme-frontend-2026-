@@ -1,0 +1,110 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user owns the document
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Videos collection
+    match /videos/{videoId} {
+      // Anyone can read videos
+      allow read: if true;
+      
+      // Only authenticated users can create videos
+      allow create: if isAuthenticated() 
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.category in ['laugh', 'cry', 'shock', 'pets']
+        && request.resource.data.createdAt is timestamp;
+      
+      // Only video owner can update/delete
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Video likes
+    match /videos/{videoId}/likes/{userId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && userId == request.auth.uid;
+      allow delete: if isAuthenticated() && userId == request.auth.uid;
+    }
+    
+    // Video comments
+    match /videos/{videoId}/comments/{commentId} {
+      allow read: if true;
+      allow create: if isAuthenticated()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.createdAt is timestamp;
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // User profiles
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+    
+    // Media collection (photos, videos, YouTube links, audio)
+    match /media/{mediaId} {
+      allow read: if true;
+      allow create: if isAuthenticated() 
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.createdAt is timestamp;
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Posts collection
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if isAuthenticated() 
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.createdAt is timestamp;
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+    
+    // Friend requests
+    match /friend_requests/{requestId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated()
+        && request.resource.data.from == request.auth.uid
+        && request.resource.data.createdAt is timestamp;
+      allow update: if isAuthenticated()
+        && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+      allow delete: if isAuthenticated()
+        && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+    }
+    
+    // Products collection
+    match /products/{productId} {
+      // Anyone can read products
+      allow read: if true;
+      
+      // Only authenticated users can create products
+      allow create: if isAuthenticated()
+        && request.resource.data.createdAt is timestamp;
+      
+      // Only authenticated users can update/delete products
+      allow update, delete: if isAuthenticated();
+    }
+    
+    // Marketplace products collection
+    match /marketplace_products/{productId} {
+      // Anyone can read marketplace products
+      allow read: if true;
+      
+      // Only authenticated users can create marketplace products
+      allow create: if isAuthenticated()
+        && request.resource.data.sellerId == request.auth.uid
+        && request.resource.data.createdAt is timestamp;
+      
+      // Only the seller can update/delete their products
+      allow update, delete: if isAuthenticated()
+        && resource.data.sellerId == request.auth.uid;
+    }
+  }
+}

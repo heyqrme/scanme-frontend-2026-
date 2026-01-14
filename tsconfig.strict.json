@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strict": true
+  },
+  "exclude": [
+    "src/apiclient/Apiclient.ts",
+    "src/apiclient/ApiclientRoute.ts",
+    "src/apiclient/data-contracts.ts",
+    "src/apiclient/http-client.ts"
+  ]
+}

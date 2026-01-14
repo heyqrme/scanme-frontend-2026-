@@ -1,0 +1,9 @@
+# Prevent rewrites for PWA files
+[[static]]
+path = "/manifest.json"
+
+[[static]]
+path = "/sw.js"
+
+[[static]]
+path = "/icons"
