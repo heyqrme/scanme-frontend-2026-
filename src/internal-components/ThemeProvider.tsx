@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { APP_ID } from "../constants";
 
 type Theme = "dark" | "light" | "system";
 
@@ -21,12 +22,10 @@ const initialState: ThemeProviderState = {
 export const ThemeProviderContext =
   createContext<ThemeProviderState>(initialState);
 
-declare const __APP_ID__: string;
-
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  storageKey = `riff-${__APP_ID__}-ui-theme`,
+  storageKey = `riff-${APP_ID}-ui-theme`,
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
