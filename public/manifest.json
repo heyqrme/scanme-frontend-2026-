@@ -1,19 +1,45 @@
 {
   "name": "ScanMe",
   "short_name": "ScanMe",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "protocol_handlers": [
+    {
+      "protocol": "web+scanme",
+      "url": "/scan-me?uri=%s"
+    }
+  ],
   "description": "Connect with friends via unique QR codes in this social community for young adults.",
   "start_url": "/scan-me",
   "scope": "/",
   "display": "standalone",
   "background_color": "#6d28d9",
   "theme_color": "#6d28d9",
-  "icons": [
+  "orientation": "portrait-primary",
+  "screenshots": [
     {
-      "src": "/icons/icon-192.png",
-      "sizes": "192x192",
+      "src": "/screenshots/screenshot1.png",
+      "sizes": "540x720",
       "type": "image/png",
-      "purpose": "any"
-    },
+      "label": "Home screen"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open QR Scanner",
+      "short_name": "QR Scanner",
+      "description": "Quickly open the QR scanner",
+      "url": "/scan-me/qr-scanner",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "iarc_rating_id": "pending",
+  "icons": [
     {
       "src": "/icons/icon-512.png",
       "sizes": "512x512",
